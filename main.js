@@ -2,7 +2,7 @@
 // Main Logic & Animations (GSAP)
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Check for touch device (Fix 1)
     if ('ontouchstart' in window) {
         document.body.classList.add('touch-device');
@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const members = [
         { name: "Fiero Jain", role: "Campus Lead", quote: "We didn't inherit a stage. We built one.", linkedin: "https://linkedin.com/in/fiero", instagram: "https://instagram.com/fiero", email: "fiero@example.com" },
         { name: "Hemanth Krishna A B", role: "Co-Campus Lead", quote: "Getting council approval was harder than any exam.", linkedin: "#", instagram: "#", email: "#" },
-        { name: "Tony James", role: "Tech Team", quote: "Code was easy. Getting people to believe was the real challenge.", linkedin: "#", instagram: "#", email: "#" },
         { name: "Parthan Rajesh", role: "Tech Team", quote: "We built the backend before we had a frontend audience.", linkedin: "#", instagram: "#", email: "#" },
+        { name: "Tony James", role: "Tech Team", quote: "Code was easy. Getting people to believe was the real challenge.", linkedin: "#", instagram: "#", email: "#" },
         { name: "Mukhthar Ahmed Yaseen O", role: "Visual & Media Lead", quote: "Every pixel we placed, we placed with intent.", linkedin: "#", instagram: "#", email: "#" },
         { name: "Badusha Pareed", role: "Creative Team", quote: "Ideas are cheap. Execution is everything.", linkedin: "#", instagram: "#", email: "#" },
-        { name: "Hridya Sivarajan", role: "Management Team", quote: "Organising chaos is an art form.", linkedin: "#", instagram: "#", email: "#" },
-        { name: "Anirudh P", role: "Management Team", quote: "We turned 'no' into 'how'.", linkedin: "#", instagram: "#", email: "#" },
         { name: "Abhijith K V", role: "Management Team", quote: "Operations is the invisible engine.", linkedin: "#", instagram: "#", email: "#" },
         { name: "Akshay Saju", role: "Management Team", quote: "Community happens when you listen first.", linkedin: "#", instagram: "#", email: "#" },
+        { name: "Anirudh P", role: "Management Team", quote: "We turned 'no' into 'how'.", linkedin: "#", instagram: "#", email: "#" },
+        { name: "Hridya Sivarajan", role: "Management Team", quote: "Organising chaos is an art form.", linkedin: "#", instagram: "#", email: "#" },
         { name: "Sreeram P", role: "Management Team", quote: "I kept the wheels turning while everyone else steered.", linkedin: "#", instagram: "#", email: "#" }
     ];
 
@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
     members.forEach((member, index) => {
         const card = document.createElement('div');
         card.className = 'member-card';
-        
+
         // Build image filename: exact name with spaces, plus .png
         // Example: "Fiero Jain" -> "Fiero Jain.png" (spaces become %20 in URL)
         const imageName = member.name + '.png';
         const imagePath = `assets/members/${encodeURIComponent(imageName)}`;
-        
+
         card.innerHTML = `
             <div class="member-photo">
                 <img src="${imagePath}" alt="${member.name}">
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="mailto:${member.email}"><i data-lucide="mail"></i></a>
             </div>
         `;
-        
+
         // Mobile tap flip
         card.addEventListener('click', () => {
             if (document.body.classList.contains('touch-device')) {
@@ -73,35 +73,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Page Intro Sequence
     const intro = gsap.timeline();
-    
+
     intro
         .set('body', { overflow: 'hidden' })
         .set('#intro-screen', { opacity: 1 })
         .set('#intro-text', { opacity: 0, letterSpacing: '0.8em' })
-        .to('#intro-text', { 
-            opacity: 1, 
-            letterSpacing: '0.4em', 
-            duration: 1.8, 
-            ease: 'power2.out' 
+        .to('#intro-text', {
+            opacity: 1,
+            letterSpacing: '0.4em',
+            duration: 1.8,
+            ease: 'power2.out'
         })
-        .to('#intro-text', { 
-            opacity: 0, 
-            duration: 0.8, 
-            delay: 0.8, 
-            ease: 'power2.in' 
+        .to('#intro-text', {
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.8,
+            ease: 'power2.in'
         })
-        .to('#intro-screen', { 
-            opacity: 0, 
-            duration: 1, 
-            ease: 'power2.inOut' 
+        .to('#intro-screen', {
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.inOut'
         })
         .set('#intro-screen', { display: 'none' })
         .set('body', { overflow: 'auto' })
-        .from('#hero-content', { 
-            opacity: 0, 
-            y: 30, 
-            duration: 1.2, 
-            ease: 'power3.out' 
+        .from('#hero-content', {
+            opacity: 0,
+            y: 30,
+            duration: 1.2,
+            ease: 'power3.out'
         })
         .from('.hero-logo', { opacity: 0, x: -20, duration: 1 }, "-=1")
         .from('.hero-watermark', { opacity: 0, duration: 2 }, "-=1")
@@ -217,9 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
             audio.volume = 0.15;
             audio.play().then(() => {
                 unmuteBtn.innerText = "♪ SOUND ACTIVE";
-                gsap.to('#sound-prompt', { opacity: 0, delay: 1, duration: 0.5, onComplete: () => {
-                    document.getElementById('sound-prompt').style.display = 'none';
-                }});
+                gsap.to('#sound-prompt', {
+                    opacity: 0, delay: 1, duration: 0.5, onComplete: () => {
+                        document.getElementById('sound-prompt').style.display = 'none';
+                    }
+                });
             }).catch(e => {
                 console.log("Audio play blocked", e);
                 unmuteBtn.innerText = "♪ PLAYBACK BLOCKED";
