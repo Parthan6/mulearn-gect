@@ -204,15 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // 9. Chapter Vault Row Entrance
         gsap.from('.chapter-vault-card', {
             scrollTrigger: {
-                trigger: '#chapters',
-                start: 'top 85%',
+                trigger: '.chapters-row',
+                start: 'top 95%', // Trigger slightly earlier
                 toggleActions: 'play none none reverse'
             },
             opacity: 0,
-            x: isDesktop ? 100 : 30,
+            y: 20, // Gentle upward reveal
             stagger: 0.1,
-            duration: 1,
-            ease: 'power3.out'
+            duration: 0.8,
+            ease: 'power2.out'
         });
 
         return () => {
