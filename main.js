@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        /* 
         // 9. Chapter Vault Row Entrance
         gsap.from('.chapter-vault-card', {
             scrollTrigger: {
@@ -214,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 0.8,
             ease: 'power2.out'
         });
+        */
 
         return () => {
             // Clean up if needed
